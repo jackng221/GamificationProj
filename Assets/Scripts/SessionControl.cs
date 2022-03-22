@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class SessionControl : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] sessions;
-
+    private static SessionControl instance;
+    public static SessionControl Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    private GameObject[] sessions;
 
     public void Start()
     {
-        sessions[0].SetActive(true);
-        if (sessions.Length > 1)
-        {
-            for (int i = 1; i < sessions.Length; i++)
-            {
-                sessions[i].SetActive(false);
-            }
-        }
+        sessions = GameObject.FindGameObjectsWithTag("Session");
+        goToSession("Title");
     }
     public bool findSession(string session)
     {
@@ -37,7 +48,14 @@ public class SessionControl : MonoBehaviour
         {
             for (int i = 0; i < sessions.Length; i++)
             {
-
+                if (sessions[i].name.Equals(session))
+                {
+                    sessions[i].SetActive(true);
+                }
+                else
+                {
+                    sessions[i].SetActive(false);
+                }
             }
         }
     }
