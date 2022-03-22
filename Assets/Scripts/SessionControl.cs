@@ -22,15 +22,18 @@ public class SessionControl : MonoBehaviour
         {
             Destroy(this);
         }
+        sessions = GameObject.FindGameObjectsWithTag("Session");
+        GoToSession("Title");
     }
     private GameObject[] sessions;
+    private string currentSession;
 
     public void Start()
     {
-        sessions = GameObject.FindGameObjectsWithTag("Session");
-        goToSession("Title");
+
     }
-    public bool findSession(string session)
+
+    public bool FindSession(string session)
     {
         for (int i = 0; i < sessions.Length; i++)
         {
@@ -42,10 +45,11 @@ public class SessionControl : MonoBehaviour
         Debug.Log("session not found");
         return false;
     }
-    public void goToSession(string session)
+    public void GoToSession(string session)
     {
-        if (findSession(session))
+        if (FindSession(session))
         {
+            currentSession = session;
             for (int i = 0; i < sessions.Length; i++)
             {
                 if (sessions[i].name.Equals(session))

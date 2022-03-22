@@ -6,10 +6,14 @@ public class UITitle : UITemplate
 {
     public void StartGame()
     {
-        SessionControl.Instance.goToSession("Game");
+        SessionControl.Instance.GoToSession("Game");
     }
     public void Options()
     {
-        SessionControl.Instance.goToSession("Settings");
+        SessionControl.Instance.GoToSession("Options");
+    }
+    public void Achievement()
+    {
+        SessionControl.Instance.GoToSession("Achievement");
     }
 }

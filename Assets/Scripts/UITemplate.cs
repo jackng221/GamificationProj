@@ -6,5 +6,8 @@ public class UITemplate : MonoBehaviour
 {
     [SerializeField]
     GameObject[] buttons;
-
+    public void Back()
+    {
+        SessionControl.Instance.GoToSession("Title");
+    }
 }
