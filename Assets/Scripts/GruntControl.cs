@@ -3,8 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class GruntAnimation : MonoBehaviour
+public class GruntControl : MonoBehaviour
 {
+    private static GruntControl instance;
+    public static GruntControl Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     [SerializeField]
     Transform initPos;
 
@@ -17,10 +37,22 @@ public class GruntAnimation : MonoBehaviour
     [SerializeField]
     GameObject[] gruntList;
 
-    public float moveTime = 0.5f;
+    public float moveTime = 1f;
+    public Ease tweenType = Ease.OutQuint;
 
     private void Start()
     {
+        InitGrunts();
+    }
+    public void InitGrunts()    // called once initially and called again when grunts are cleared or game quit
+    {
+        foreach (GameObject grunt in gruntList)
+        {
+            grunt.transform.DOKill();
+            grunt.transform.DOMove(initPos.position, 0.5f);
+            grunt.transform.SetParent(initPos);
+        }
+
         grunts = new GameObject[positions.Length];
         gruntList = GameObject.FindGameObjectsWithTag("Grunt");
         for (int i = 0; i < positions.Length; i++)
@@ -40,19 +72,6 @@ public class GruntAnimation : MonoBehaviour
                 }
             } while (!pass);
             grunts[i] = gruntList[x];
-
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            CycleGrunts();
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            ReturnToSpawn();
         }
     }
     public void CycleGrunts()
@@ -63,13 +82,13 @@ public class GruntAnimation : MonoBehaviour
             {
                 grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 grunts[i].transform.SetParent(initPos);
-                grunts[i].transform.DOMove(initPos.position, moveTime);
+                grunts[i].transform.DOMove(initPos.position, moveTime).SetEase(tweenType);
             }
             else
             {
                 grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i + 1;
                 grunts[i].transform.SetParent(positions[i - 1].transform);
-                grunts[i].transform.DOMove(positions[i - 1].transform.position, moveTime);
+                grunts[i].transform.DOMove(positions[i - 1].transform.position, moveTime).SetEase(tweenType);
             }
         }
 
@@ -89,19 +108,11 @@ public class GruntAnimation : MonoBehaviour
             }
         } while (!pass);
         gruntList[x].transform.SetParent(positions[positions.Length - 1].transform);
-        gruntList[x].transform.DOMove(positions[positions.Length - 1].transform.position, moveTime);
+        gruntList[x].transform.DOMove(positions[positions.Length - 1].transform.position, moveTime).SetEase(tweenType);
 
         for (int i = 0; i < grunts.Length; i++)
         {
             grunts[i] = positions[i].transform.GetChild(0).gameObject;
-        }
-
-    }
-    public void ReturnToSpawn()
-    {
-        foreach (GameObject grunt in grunts)
-        {
-            grunt.transform.DOMove(initPos.position, 0.5f);
         }
     }
 }

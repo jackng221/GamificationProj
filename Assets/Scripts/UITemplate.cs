@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UITemplate : MonoBehaviour
+abstract public class UITemplate : MonoBehaviour
 {
     [SerializeField]
     GameObject[] buttons;
-    public void Back()
+    public virtual void Back()
     {
         SessionControl.Instance.GoToSession("Title");
     }
