@@ -22,37 +22,54 @@ public class GameplayManager : MonoBehaviour
         {
             Destroy(this);
         }
-    }
 
+        InitStage();
+    }
     [SerializeField]
-    private int gruntCountSetting = 10;
-    private int gruntCount;
+    private int playerHpSetting = 3;
+    private int playerHp;
     [SerializeField]
     private int bossHpSetting = 10;
     private int bossHp;
+    [SerializeField]
+    private int gruntCountSetting = 10;
+    private int gruntCount;
 
     private bool gruntClear = false;
 
     public void InitStage()
     {
+        playerHp = playerHpSetting;
+        bossHp = bossHpSetting; 
         gruntCount = gruntCountSetting;
-        bossHp = bossHpSetting;
         gruntClear = false;
     }
-    public void QuitGame()
+    public void EndGame()
     {
+        InitStage();
         GruntControl.Instance.InitGrunts();
         SessionControl.Instance.GoToSession("Title");
     }
-    private void Start()
+    public void Answer(bool correct)
     {
-        InitStage();
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !gruntClear)
+        if (correct)
         {
-            KillGrunt();
+            if (!gruntClear)
+            {
+                KillGrunt();
+            }
+            else
+            {
+                DamageBoss();
+            }
+        }
+        else
+        {
+            playerHp--;
+            if (playerHp <= 0)
+            {
+                EndGame();
+            }
         }
     }
     private void KillGrunt()
@@ -80,7 +97,7 @@ public class GameplayManager : MonoBehaviour
         if (bossHp <= 0)
         {
             Debug.Log("to do: stage clear");
-            QuitGame();
+            EndGame();
         }
     }
 }

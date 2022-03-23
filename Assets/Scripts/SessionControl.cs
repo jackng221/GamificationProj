@@ -26,12 +26,6 @@ public class SessionControl : MonoBehaviour
         GoToSession("Title");
     }
     private GameObject[] sessions;
-    private string currentSession;
-
-    public void Start()
-    {
-
-    }
 
     public bool FindSession(string session)
     {
@@ -49,7 +43,6 @@ public class SessionControl : MonoBehaviour
     {
         if (FindSession(session))
         {
-            currentSession = session;
             for (int i = 0; i < sessions.Length; i++)
             {
                 if (sessions[i].name.Equals(session))

@@ -23,6 +23,8 @@ public class GruntControl : MonoBehaviour
         {
             Destroy(this);
         }
+
+        InitGrunts();
     }
 
     [SerializeField]
@@ -40,10 +42,6 @@ public class GruntControl : MonoBehaviour
     public float moveTime = 1f;
     public Ease tweenType = Ease.OutQuint;
 
-    private void Start()
-    {
-        InitGrunts();
-    }
     public void InitGrunts()    // called once initially and called again when grunts are cleared or game quit
     {
         foreach (GameObject grunt in gruntList)

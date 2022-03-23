@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class UIGame : UITemplate
 {
+    public void GoodAnswer()
+    {
+        GameplayManager.Instance.Answer(true);
+    }
+    public void BadAnswer()
+    {
+        GameplayManager.Instance.Answer(false);
+    }
     public override void Back()
     {
-        Debug.Log("Abandon game");
+        GameplayManager.Instance.EndGame();
+        base.Back();
     }
 }
