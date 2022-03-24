@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5465967908994939151}
   - component: {fileID: 5465967908994939136}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Character_Sample01_s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7159323301030392288}
   - component: {fileID: -3613754177839135225}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Char_LilBrother
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4729344715348831326}
   - component: {fileID: 7395326896614015884}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Character_Shadow01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

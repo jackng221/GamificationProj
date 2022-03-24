@@ -91,9 +91,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1068603311008953771}
   - component: {fileID: 559260798272933732}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Char_Pyro
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2370982341174155288}
   - component: {fileID: 6601917142540398542}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Character_Shadow01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

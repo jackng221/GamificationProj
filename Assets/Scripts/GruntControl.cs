@@ -24,14 +24,14 @@ public class GruntControl : MonoBehaviour
             Destroy(this);
         }
 
-        InitGrunts();
+        gruntList = GameObject.FindGameObjectsWithTag("Grunt");
     }
 
     [SerializeField]
     Transform initPos;
 
     [SerializeField]
-    GameObject[] positions;
+    Transform[] positions;
 
     [SerializeField]
     GameObject[] grunts;
@@ -39,38 +39,32 @@ public class GruntControl : MonoBehaviour
     [SerializeField]
     GameObject[] gruntList;
 
-    public float moveTime = 1f;
+    public float tweenTime = 1f;
     public Ease tweenType = Ease.OutQuint;
 
-    public void InitGrunts()    // called once initially and called again when grunts are cleared or game quit
+    public void StartGrunts()
     {
-        foreach (GameObject grunt in gruntList)
-        {
-            grunt.transform.DOKill();
-            grunt.transform.DOMove(initPos.position, 0.5f);
-            grunt.transform.SetParent(initPos);
-        }
-
         grunts = new GameObject[positions.Length];
-        gruntList = GameObject.FindGameObjectsWithTag("Grunt");
+
         for (int i = 0; i < positions.Length; i++)
         {
             bool pass;
-            int x;
+            int rand;
             do
             {
                 pass = true;
-                x = Random.Range(0, gruntList.Length);
+                rand = Random.Range(0, gruntList.Length);
                 for (int j = 0; j < i; j++) //check duplicate
                 {
-                    if (gruntList[x].name == grunts[j].name)
+                    if (gruntList[rand].name == grunts[j].name)
                     {
                         pass = false;
                     }
                 }
             } while (!pass);
-            grunts[i] = gruntList[x];
+            grunts[i] = gruntList[rand];
         }
+        CycleGrunts();
     }
     public void CycleGrunts()
     {
@@ -80,37 +74,48 @@ public class GruntControl : MonoBehaviour
             {
                 grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 grunts[i].transform.SetParent(initPos);
-                grunts[i].transform.DOMove(initPos.position, moveTime).SetEase(tweenType);
+                grunts[i].transform.DOMove(initPos.position, tweenTime).SetEase(tweenType);
             }
             else
             {
                 grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i + 1;
-                grunts[i].transform.SetParent(positions[i - 1].transform);
-                grunts[i].transform.DOMove(positions[i - 1].transform.position, moveTime).SetEase(tweenType);
+                grunts[i].transform.SetParent(positions[i - 1]);
+                grunts[i].transform.DOMove(positions[i - 1].position, tweenTime).SetEase(tweenType);
             }
         }
 
         // get new random grunt
         bool pass;
-        int x;
+        int rand;
         do
         {
             pass = true;
-            x = Random.Range(0, gruntList.Length);
+            rand = Random.Range(0, gruntList.Length);
             for (int i = 0; i < grunts.Length; i++) //check duplicate
             {
-                if (gruntList[x].name == grunts[i].name)
+                if (gruntList[rand].name == grunts[i].name)
                 {
                     pass = false;
                 }
             }
         } while (!pass);
-        gruntList[x].transform.SetParent(positions[positions.Length - 1].transform);
-        gruntList[x].transform.DOMove(positions[positions.Length - 1].transform.position, moveTime).SetEase(tweenType);
+        gruntList[rand].transform.SetParent(positions[positions.Length - 1]);
+        gruntList[rand].transform.DOMove(positions[positions.Length - 1].position, tweenTime).SetEase(tweenType);
 
         for (int i = 0; i < grunts.Length; i++)
         {
-            grunts[i] = positions[i].transform.GetChild(0).gameObject;
+            grunts[i] = positions[i].GetChild(0).gameObject;
         }
+    }
+    public void ResetGrunts()
+    {
+        foreach (GameObject grunt in gruntList)
+        {
+            grunt.transform.DOKill();
+            grunt.transform.DOMove(initPos.position, tweenTime);
+            grunt.transform.SetParent(initPos);
+        }
+
+        grunts = new GameObject[positions.Length];
     }
 }

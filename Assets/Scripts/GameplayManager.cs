@@ -41,12 +41,13 @@ public class GameplayManager : MonoBehaviour
         bossHp = bossHpSetting; 
         gruntCount = gruntCountSetting;
         gruntClear = false;
-        GruntControl.Instance.CycleGrunts();
+        GruntControl.Instance.StartGrunts();
         QuestionAnswerLogic.Instance.NewQuestion();
     }
     public void EndGame()
     {
-        GruntControl.Instance.InitGrunts();
+        GruntControl.Instance.ResetGrunts();
+        BossControl.Instance.ResetBoss();
         SessionControl.Instance.GoToSession("Title");
     }
     public void Answer(bool correct)
@@ -79,7 +80,7 @@ public class GameplayManager : MonoBehaviour
         if (gruntCount <= 0)
         {
             gruntClear = true;
-            GruntControl.Instance.InitGrunts();
+            GruntControl.Instance.ResetGrunts();
             StartBoss();
         }
         else
@@ -91,6 +92,7 @@ public class GameplayManager : MonoBehaviour
     private void StartBoss()
     {
         Debug.Log("to do: boss battle");
+        BossControl.Instance.StartBoss();
     }
     private void DamageBoss()
     {
