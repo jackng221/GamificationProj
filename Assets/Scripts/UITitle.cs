@@ -7,7 +7,7 @@ public class UITitle : UITemplate
     public void StartGame()
     {
         SessionControl.Instance.GoToSession("Game");
-        GameplayManager.Instance.InitStage();
+        GameplayManager.Instance.StartGame();
     }
     public void Options()
     {

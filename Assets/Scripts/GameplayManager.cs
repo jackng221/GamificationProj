@@ -22,8 +22,6 @@ public class GameplayManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        InitStage();
     }
     [SerializeField]
     private int playerHpSetting = 3;
@@ -37,16 +35,17 @@ public class GameplayManager : MonoBehaviour
 
     private bool gruntClear = false;
 
-    public void InitStage()
+    public void StartGame()
     {
         playerHp = playerHpSetting;
         bossHp = bossHpSetting; 
         gruntCount = gruntCountSetting;
         gruntClear = false;
+        GruntControl.Instance.CycleGrunts();
+        QuestionAnswerLogic.Instance.NewQuestion();
     }
     public void EndGame()
     {
-        InitStage();
         GruntControl.Instance.InitGrunts();
         SessionControl.Instance.GoToSession("Title");
     }
@@ -57,10 +56,12 @@ public class GameplayManager : MonoBehaviour
             if (!gruntClear)
             {
                 KillGrunt();
+                QuestionAnswerLogic.Instance.NewQuestion();
             }
             else
             {
                 DamageBoss();
+                QuestionAnswerLogic.Instance.NewQuestion();
             }
         }
         else
