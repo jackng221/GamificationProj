@@ -35,6 +35,7 @@ public class QuestionAnswerLogic : MonoBehaviour
 
     public void NewQuestion()
     {
+        Debug.Log("New question");
         question = "Q";
         correctAnswer = "A";
         answers = new List<string> { "A", "X", "Y", "Z" };

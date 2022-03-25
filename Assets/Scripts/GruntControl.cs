@@ -44,6 +44,7 @@ public class GruntControl : MonoBehaviour
 
     public void StartGrunts()
     {
+        Debug.Log("Start grunts");
         grunts = new GameObject[positions.Length];
 
         for (int i = 0; i < positions.Length; i++)
@@ -109,6 +110,7 @@ public class GruntControl : MonoBehaviour
     }
     public void ResetGrunts()
     {
+        Debug.Log("Reset grunts");
         foreach (GameObject grunt in gruntList)
         {
             grunt.transform.DOKill();

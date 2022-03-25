@@ -44,6 +44,7 @@ public class BossControl : MonoBehaviour
 
     public void StartBoss()
     {
+        Debug.Log("Start boss");
         int rand = Random.Range(0, bossList.Length);
         boss = bossList[rand];
 
@@ -52,6 +53,7 @@ public class BossControl : MonoBehaviour
     }
     public void ResetBoss()
     {
+        Debug.Log("Reset boss");
         boss.transform.DOKill();
         boss.transform.DOMove(initPos.position, tweenTime);
         boss.transform.SetParent(initPos);

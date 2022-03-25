@@ -37,6 +37,7 @@ public class GameplayManager : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("Start game");
         playerHp = playerHpSetting;
         bossHp = bossHpSetting; 
         gruntCount = gruntCountSetting;
@@ -46,14 +47,19 @@ public class GameplayManager : MonoBehaviour
     }
     public void EndGame()
     {
+        Debug.Log("End game");
         GruntControl.Instance.ResetGrunts();
-        BossControl.Instance.ResetBoss();
+        if (gruntClear)
+        {
+            BossControl.Instance.ResetBoss();
+        }
         SessionControl.Instance.GoToSession("Title");
     }
     public void Answer(bool correct)
     {
         if (correct)
         {
+            Debug.Log("Correct answer");
             if (!gruntClear)
             {
                 KillGrunt();
@@ -67,18 +73,22 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("Wrong answer");
             playerHp--;
             if (playerHp <= 0)
             {
+                Debug.Log("No more HP");
                 EndGame();
             }
         }
     }
     private void KillGrunt()
     {
+        Debug.Log("Kill grunt");
         gruntCount--;
         if (gruntCount <= 0)
         {
+            Debug.Log("Grunt cleared");
             gruntClear = true;
             GruntControl.Instance.ResetGrunts();
             StartBoss();
@@ -91,15 +101,15 @@ public class GameplayManager : MonoBehaviour
 
     private void StartBoss()
     {
-        Debug.Log("to do: boss battle");
         BossControl.Instance.StartBoss();
     }
     private void DamageBoss()
     {
+        Debug.Log("Damage boss");
         bossHp--;
         if (bossHp <= 0)
         {
-            Debug.Log("to do: stage clear");
+            Debug.Log("Stage clear");
             EndGame();
         }
     }
