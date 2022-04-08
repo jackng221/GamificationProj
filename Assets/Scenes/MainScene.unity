@@ -2637,8 +2637,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286073372
+  m_fontColor: {r: 0.10980393, g: 0.2901961, b: 0.47058827, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2655,8 +2655,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 54
+  m_fontSizeBase: 54
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3429,6 +3429,7 @@ MonoBehaviour:
   playerHpSetting: 3
   gruntClear: 0
   questionText: {fileID: 695527747}
+  timerText: {fileID: 1301899942}
   answerButtonPrefab: {fileID: 4130090344829692877, guid: b91153f2e9ac7ab42904f3d61eb105e2,
     type: 3}
   answerButtonParent: {fileID: 1467855631}
