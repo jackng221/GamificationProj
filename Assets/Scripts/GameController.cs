@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
     private bool gruntClear = false;
 
     public TextMeshProUGUI questionText;
+    public TextMeshProUGUI timerText;
     public GameObject answerButtonPrefab;
     public Transform answerButtonParent;
 
@@ -61,7 +62,7 @@ public class GameController : MonoBehaviour
         currentRoundData = dataController.GetCurrentRoundData();
         questionPool = currentRoundData.questions;
 
-        timer = 0;
+        timer = -1;
         InvokeRepeating("Timer", 0f, 1f);
         questionIndex = 0;
         isRoundActive = true;
@@ -84,6 +85,7 @@ public class GameController : MonoBehaviour
     private void Timer()
     {
         timer++;
+        timerText.SetText("Time: " + timer.ToString());
     }
     private void ShowQuestion()
     {
