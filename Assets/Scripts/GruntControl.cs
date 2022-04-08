@@ -73,13 +73,21 @@ public class GruntControl : MonoBehaviour
         {
             if (i == 0) // return to grunt list
             {
-                grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
+                foreach (SpriteRenderer sr in grunts[i].GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sr.sortingOrder = 0;
+                }
+                //grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
                 grunts[i].transform.SetParent(initPos);
                 grunts[i].transform.DOMove(initPos.position, tweenTime).SetEase(tweenType);
             }
             else
             {
-                grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i + 1;
+                foreach(SpriteRenderer sr in grunts[i].GetComponentsInChildren<SpriteRenderer>())
+                {
+                    sr.sortingOrder = grunts.Length - i;
+                }
+                //grunts[i].GetComponentInChildren<SpriteRenderer>().sortingOrder = i + 1;
                 grunts[i].transform.SetParent(positions[i - 1]);
                 grunts[i].transform.DOMove(positions[i - 1].position, tweenTime).SetEase(tweenType);
             }

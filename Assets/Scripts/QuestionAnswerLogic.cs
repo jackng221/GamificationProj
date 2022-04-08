@@ -51,12 +51,12 @@ public class QuestionAnswerLogic : MonoBehaviour
             if (answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text.Equals(correctAnswer))
             {
                 answerButtons[i].GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-                answerButtons[i].GetComponentInChildren<Button>().onClick.AddListener(UIGame.Instance.GoodAnswer);
+                //answerButtons[i].GetComponentInChildren<Button>().onClick.AddListener(UIGame.Instance.GoodAnswer);
             }
             else
             {
                 answerButtons[i].GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-                answerButtons[i].GetComponentInChildren<Button>().onClick.AddListener(UIGame.Instance.BadAnswer);
+                //answerButtons[i].GetComponentInChildren<Button>().onClick.AddListener(UIGame.Instance.BadAnswer);
             }
         }
     }
