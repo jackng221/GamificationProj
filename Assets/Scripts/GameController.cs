@@ -52,15 +52,16 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("Start game");
-        playerHp = playerHpSetting;
-        //bossHp = bossHpSetting; 
-        //gruntCount = gruntCountSetting;
-        gruntClear = false;
-        GruntControl.Instance.StartGrunts();
 
         dataController = FindObjectOfType<DataController>();
         currentRoundData = dataController.GetCurrentRoundData();
         questionPool = currentRoundData.questions;
+
+        playerHp = playerHpSetting;
+        //bossHp = bossHpSetting; 
+        //gruntCount = gruntCountSetting;
+        gruntClear = false;
+        EnemyLineControl.Instance.StartGrunts();
 
         timer = -1;
         InvokeRepeating("Timer", 0f, 1f);
@@ -72,7 +73,7 @@ public class GameController : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("End game");
-        GruntControl.Instance.ResetGrunts();
+        EnemyLineControl.Instance.ResetGrunts();
         if (gruntClear)
         {
             //BossControl.Instance.ResetBoss();
@@ -119,13 +120,13 @@ public class GameController : MonoBehaviour
             {
                 Debug.Log("Grunt cleared");
                 gruntClear = true;
-                GruntControl.Instance.ResetGrunts();
+                EnemyLineControl.Instance.ResetGrunts();
                 EndGame();
             }
             else
             {
-                GruntControl.Instance.CycleGrunts();
                 questionIndex++;
+                EnemyLineControl.Instance.CycleGrunts();
                 ShowQuestion();
             }
         }
@@ -139,5 +140,13 @@ public class GameController : MonoBehaviour
                 EndGame();
             }
         }
+    }
+    public QuestionData[] GetQuestionPool()
+    {
+        return questionPool;
+    }
+    public int GetQuestionIndex()
+    {
+        return questionIndex;
     }
 }

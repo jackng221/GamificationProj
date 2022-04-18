@@ -9,4 +9,6 @@ public class QuestionData
     public string consequenceText;
     public string explanationText;
     public AnswerData[] answers;
+
+    public string graphic;
 }
