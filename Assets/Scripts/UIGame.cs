@@ -24,9 +24,9 @@ public class UIGame : UITemplate
         }
     }
 
-    public override void Back()
+    public override void ReturnToTitle()
     {
         GameController.Instance.EndGame();
-        base.Back();
+        base.ReturnToTitle();
     }
 }

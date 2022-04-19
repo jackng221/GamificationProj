@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     //private int gruntCountSetting = 10;
     //private int gruntCount;
-    private bool gruntClear = false;
+    private bool stageCleared = false;
 
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI timerText;
@@ -50,6 +50,9 @@ public class GameController : MonoBehaviour
     private int timer;
     private int questionIndex;
 
+    public GameObject winPanel;
+    public GameObject losePanel;
+
     public void StartGame()
     {
         Debug.Log("Start game");
@@ -62,7 +65,7 @@ public class GameController : MonoBehaviour
         //bossHp = bossHpSetting; 
         //gruntCount = gruntCountSetting;
         playerObj.GetComponentInChildren<PlayerHpGraphicControl>().AddHearts(playerHp);
-        gruntClear = false;
+        stageCleared = false;
         EnemyLineControl.Instance.StartGrunts();
 
         timer = -1;
@@ -75,15 +78,20 @@ public class GameController : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("End game");
-        EnemyLineControl.Instance.ResetGrunts();
-        if (gruntClear)
+        if (stageCleared)
         {
-            //BossControl.Instance.ResetBoss();
-            Debug.Log("Win");
+            winPanel.SetActive(true);
         }
-
-        CancelInvoke("Timer");
-        SessionControl.Instance.GoToSession("Title");
+        else
+        {
+            losePanel.SetActive(true);
+        }
+        CancelInvoke("Timer"); 
+    }
+    public void ClearGameStatus()
+    {
+        playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(playerHp);
+        EnemyLineControl.Instance.DeleteEnemyLine();
     }
     private void Timer()
     {
@@ -116,13 +124,10 @@ public class GameController : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log("Correct answer");
-            //gruntCount--;
-            //if (gruntCount <= 0)
             if (questionIndex + 1 >= questionPool.Length)
             {
-                Debug.Log("Grunt cleared");
-                gruntClear = true;
-                EnemyLineControl.Instance.ResetGrunts();
+                Debug.Log("Stage cleared");
+                stageCleared = true;
                 EndGame();
             }
             else

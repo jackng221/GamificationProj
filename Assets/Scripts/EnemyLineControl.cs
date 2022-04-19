@@ -195,9 +195,9 @@ public class EnemyLineControl : MonoBehaviour
         //gruntList[rand].transform.SetParent(positions[positions.Length - 1]);
         //gruntList[rand].transform.DOMove(positions[positions.Length - 1].position, tweenTime).SetEase(tweenType);
     }
-    public void ResetGrunts()
+    public void DeleteEnemyLine()
     {
-        Debug.Log("Reset grunts");
+        Debug.Log("Delete enemy line");
 
         GameObject[] toBeDeleted = GameObject.FindGameObjectsWithTag("Grunt");
         foreach (GameObject grunt in toBeDeleted)

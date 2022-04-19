@@ -18,8 +18,8 @@ public class PlayerHpGraphicControl : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject temp = hearts[hearts.Count - 1 - i];
-            hearts.RemoveAt(hearts.Count - 1 - i);
+            GameObject temp = hearts[hearts.Count - 1];
+            hearts.RemoveAt(hearts.Count - 1);
             Destroy(temp);
         }
     }

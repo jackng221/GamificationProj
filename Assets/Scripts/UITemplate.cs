@@ -6,7 +6,7 @@ abstract public class UITemplate : MonoBehaviour
 {
     [SerializeField]
     GameObject[] buttons;
-    public virtual void Back()
+    public virtual void ReturnToTitle()
     {
         SessionControl.Instance.GoToSession("Title");
     }
