@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
             Destroy(this);
         }
     }
+    public GameObject playerObj;
     [SerializeField]
     private int playerHpSetting = 3;
     private int playerHp;
@@ -60,6 +61,7 @@ public class GameController : MonoBehaviour
         playerHp = playerHpSetting;
         //bossHp = bossHpSetting; 
         //gruntCount = gruntCountSetting;
+        playerObj.GetComponentInChildren<PlayerHpGraphicControl>().AddHearts(playerHp);
         gruntClear = false;
         EnemyLineControl.Instance.StartGrunts();
 
@@ -134,6 +136,8 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Wrong answer");
             playerHp--;
+            playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(1);
+
             if (playerHp <= 0)
             {
                 Debug.Log("No more HP");
