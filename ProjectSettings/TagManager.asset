@@ -7,6 +7,7 @@ TagManager:
   - Session
   - Grunt
   - Boss
+  - FX
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 706551107
+    locked: 0
+  - name: UI
+    uniqueID: 2235842867
     locked: 0

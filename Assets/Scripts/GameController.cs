@@ -75,9 +75,14 @@ public class GameController : MonoBehaviour
 
         ShowQuestion();
     }
-    public void EndGame()
+    public void EndGame(bool endByQuit)
     {
         Debug.Log("End game");
+        if (endByQuit)
+        {
+            ClearGameStatus();
+            return;
+        }
         if (stageCleared)
         {
             winPanel.SetActive(true);
@@ -92,6 +97,10 @@ public class GameController : MonoBehaviour
     {
         playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(playerHp);
         EnemyLineControl.Instance.DeleteEnemyLine();
+        foreach (GameObject fx in GameObject.FindGameObjectsWithTag("FX"))
+        {
+            Destroy(fx);
+        }
     }
     private void Timer()
     {
@@ -124,11 +133,13 @@ public class GameController : MonoBehaviour
         if (isCorrect)
         {
             Debug.Log("Correct answer");
+            EffectSpawner.Instance.SpawnEffectAtCursor(EffectSpawner.Instance.feedbackCorrect, gameObject);
+
             if (questionIndex + 1 >= questionPool.Length)
             {
                 Debug.Log("Stage cleared");
                 stageCleared = true;
-                EndGame();
+                EndGame(false);
             }
             else
             {
@@ -140,13 +151,15 @@ public class GameController : MonoBehaviour
         else
         {
             Debug.Log("Wrong answer");
+            EffectSpawner.Instance.SpawnEffectAtCursor(EffectSpawner.Instance.feedbackIncorrect, gameObject);
+
             playerHp--;
             playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(1);
 
             if (playerHp <= 0)
             {
                 Debug.Log("No more HP");
-                EndGame();
+                EndGame(false);
             }
         }
     }
