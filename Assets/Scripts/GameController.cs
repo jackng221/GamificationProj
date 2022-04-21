@@ -55,12 +55,12 @@ public class GameController : MonoBehaviour
     public GameObject losePanel;
     public GameObject wrongAnsPanel;
 
-    public void StartGame()
+    public void StartGame(int roundIndex)
     {
         Debug.Log("Start game");
 
         dataController = FindObjectOfType<DataController>();
-        currentRoundData = dataController.GetCurrentRoundData();
+        currentRoundData = dataController.GetRoundData(roundIndex);
         questionPool = currentRoundData.questions;
 
         playerHp = playerHpSetting;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIGamePanel : UITemplate
+public class UIGamePanel : UIPanel
 {
     public virtual void ConfirmEndGame()
     {
@@ -11,7 +11,7 @@ public class UIGamePanel : UITemplate
         GameController.Instance.ClearGameStatus();
         ReturnToTitle();
     }
-    public virtual void ConfirmResume()
+    public virtual void ConfirmResumeGame()
     {
         gameObject.SetActive(false);
         GameController.Instance.ResumeRound();

@@ -10,8 +10,8 @@ public class DataController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
-    public RoundData GetCurrentRoundData()
+    public RoundData GetRoundData(int roundIndex)
     {
-        return allRoundData[0];
+        return allRoundData[roundIndex];
     }
 }

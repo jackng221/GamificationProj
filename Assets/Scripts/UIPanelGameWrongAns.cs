@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class UIGamePanelWrongAns : UIGamePanel
 {
-    public override void ConfirmResume()
+    public override void ConfirmResumeGame()
     {
         GameController.Instance.WrongAnsReturn();
-        base.ConfirmResume();
+        base.ConfirmResumeGame();
     }
     private void OnEnable()
     {

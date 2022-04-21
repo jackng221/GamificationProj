@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class UITitle : UITemplate
 {
-    public void StartGame()
+    public GameObject introPanel;
+    public GameObject stageSelectPanel;
+    int stageIndex = 0;
+
+
+    private void Start()
     {
-        SessionControl.Instance.GoToSession("Game");
-        GameController.Instance.StartGame();
+        introPanel.SetActive(true);
+    }
+    public void StageSelectPanel(int stageIndex)
+    {
+        stageSelectPanel.SetActive(true);
+        stageSelectPanel.GetComponent<UIPanelStageSelect>().SetStageIndex(stageIndex);
+
+        //change panel content
     }
     public void Options()
     {
