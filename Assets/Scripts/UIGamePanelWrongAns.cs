@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class UIGamePanelWrongAns : UIGamePanel
 {
+    public override void ConfirmResume()
+    {
+        GameController.Instance.WrongAnsReturn();
+        base.ConfirmResume();
+    }
     private void OnEnable()
     {
         QuestionData question = GameController.Instance.GetQuestionPool()[GameController.Instance.GetQuestionIndex()];

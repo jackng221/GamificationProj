@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class UIGamePanel : UITemplate
 {
-    public void ConfirmEndGame()
+    public virtual void ConfirmEndGame()
     {
         gameObject.SetActive(false);
         GameController.Instance.ClearGameStatus();
         ReturnToTitle();
     }
-    public void ConfirmResume()
+    public virtual void ConfirmResume()
     {
         gameObject.SetActive(false);
         GameController.Instance.ResumeRound();

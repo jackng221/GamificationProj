@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
 
     private bool isRoundActive;
+    private bool isNotPaused;
     private int timer;
     private int questionIndex;
 
@@ -73,6 +74,7 @@ public class GameController : MonoBehaviour
         InvokeRepeating("Timer", 0f, 1f);
         questionIndex = 0;
         isRoundActive = true;
+        isNotPaused = true;
 
         ShowQuestion();
     }
@@ -96,12 +98,12 @@ public class GameController : MonoBehaviour
     }
     public void ShowPanel(GameObject panel)
     {
-        isRoundActive = false;
+        isNotPaused = false;
         panel.SetActive(true);
     }
     public void ResumeRound()
     {
-        isRoundActive = true;
+        isNotPaused = true;
     }
     public void ClearGameStatus()
     {
@@ -111,10 +113,11 @@ public class GameController : MonoBehaviour
         {
             Destroy(fx);
         }
+        CancelInvoke("Timer");
     }
     private void Timer()
     {
-        if (isRoundActive)
+        if (isRoundActive && isNotPaused)
         {
             timer++;
             timerText.SetText("Time: " + timer.ToString());
@@ -147,19 +150,11 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Correct answer");
             EffectSpawner.Instance.SpawnEffectAtCursor(EffectSpawner.Instance.feedbackCorrect, gameObject);
-
-            if (questionIndex + 1 >= questionPool.Length)
+            if (CheckStageEnd())
             {
-                Debug.Log("Stage cleared");
-                stageCleared = true;
-                EndGame(false);
+                return;
             }
-            else
-            {
-                questionIndex++;
-                EnemyLineControl.Instance.CycleGrunts();
-                ShowQuestion();
-            }
+            NextQuestion();
         }
         else
         {
@@ -169,12 +164,6 @@ public class GameController : MonoBehaviour
             playerHp--;
             playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(1);
             ShowPanel(wrongAnsPanel);
-
-            if (playerHp <= 0)
-            {
-                Debug.Log("No more HP");
-                EndGame(false);
-            }
         }
     }
     public QuestionData[] GetQuestionPool()
@@ -184,5 +173,39 @@ public class GameController : MonoBehaviour
     public int GetQuestionIndex()
     {
         return questionIndex;
+    }
+    public void NextQuestion()
+    {
+        if (isRoundActive)
+        {
+            questionIndex++;
+            EnemyLineControl.Instance.CycleGrunts();
+            ShowQuestion();
+        }
+    }
+    public bool CheckStageEnd()
+    {
+        if (playerHp <= 0)  //Check HP
+        {
+            Debug.Log("No more HP");
+            EndGame(false);
+            return true;
+        }
+        else if (questionIndex + 1 >= questionPool.Length)   //Check if at last question
+        {
+            Debug.Log("Stage cleared");
+            stageCleared = true;
+            EndGame(false);
+            return true;
+        }
+        return false;
+    }
+    public void WrongAnsReturn()
+    {
+        if (CheckStageEnd())
+        {
+            return;
+        }
+        NextQuestion();
     }
 }
