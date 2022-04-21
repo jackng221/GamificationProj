@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
 
     public GameObject winPanel;
     public GameObject losePanel;
+    public GameObject wrongAnsPanel;
 
     public void StartGame()
     {
@@ -78,6 +79,7 @@ public class GameController : MonoBehaviour
     public void EndGame(bool endByQuit)
     {
         Debug.Log("End game");
+        isRoundActive = false;
         if (endByQuit)
         {
             ClearGameStatus();
@@ -85,13 +87,21 @@ public class GameController : MonoBehaviour
         }
         if (stageCleared)
         {
-            winPanel.SetActive(true);
+            ShowPanel(winPanel);
         }
         else
         {
-            losePanel.SetActive(true);
+            ShowPanel(losePanel);
         }
-        CancelInvoke("Timer"); 
+    }
+    public void ShowPanel(GameObject panel)
+    {
+        isRoundActive = false;
+        panel.SetActive(true);
+    }
+    public void ResumeRound()
+    {
+        isRoundActive = true;
     }
     public void ClearGameStatus()
     {
@@ -104,8 +114,11 @@ public class GameController : MonoBehaviour
     }
     private void Timer()
     {
-        timer++;
-        timerText.SetText("Time: " + timer.ToString());
+        if (isRoundActive)
+        {
+            timer++;
+            timerText.SetText("Time: " + timer.ToString());
+        }
     }
     private void ShowQuestion()
     {
@@ -155,6 +168,7 @@ public class GameController : MonoBehaviour
 
             playerHp--;
             playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(1);
+            ShowPanel(wrongAnsPanel);
 
             if (playerHp <= 0)
             {
