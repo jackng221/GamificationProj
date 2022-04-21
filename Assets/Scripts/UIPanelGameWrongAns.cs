@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIGamePanelWrongAns : UIGamePanel
+public class UIPanelGameWrongAns : UIPanelGame
 {
     public override void ConfirmResumeGame()
     {
@@ -15,8 +15,6 @@ public class UIGamePanelWrongAns : UIGamePanel
     {
         QuestionData question = GameController.Instance.GetQuestionPool()[GameController.Instance.GetQuestionIndex()];
         GetComponentInChildren<TextMeshProUGUI>().SetText(question.consequenceText + "\n\n" + question.explanationText);
-        //Invoke("RefreshLayout", 0.1f);
-        //RefreshLayout();
         StartCoroutine("test");
     }
     IEnumerator test()

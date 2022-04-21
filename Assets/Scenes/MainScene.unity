@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 44942740}
   - component: {fileID: 44942739}
   m_Layer: 5
-  m_Name: forecast (1)
+  m_Name: FoodSafety
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da9a801a372dc2e448df5005aeba7cf8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 216782da8eb7b4c42b446459940fddc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -734,8 +734,8 @@ MonoBehaviour:
         isCorrect: 1
       - answerText: Region difference
         isCorrect: 0
-      graphic: charSun
-    - questionText: You are buying sunglasses, which aspect is the most important?
+      graphic: charMeat
+    - questionText: Food safety
       consequenceText: 
       explanationText: 
       answers:
@@ -745,8 +745,8 @@ MonoBehaviour:
         isCorrect: 0
       - answerText: Lense type
         isCorrect: 0
-      graphic: charSun
-    - questionText: Which of the following environments is safe from sun burn?
+      graphic: charMeat
+    - questionText: Food safety
       consequenceText: 
       explanationText: 
       answers:
@@ -756,7 +756,7 @@ MonoBehaviour:
         isCorrect: 0
       - answerText: Sheltered in shades
         isCorrect: 1
-      graphic: charSun
+      graphic: charMeat
 --- !u!1 &253611256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,9 +1765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You win!
-
-'
+  m_text: Stage description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
   m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
@@ -3093,9 +3091,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You win!
-
-'
+  m_text: Intro
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c1482dbce654844b9ba1c753cbea5d80, type: 2}
   m_sharedMaterial: {fileID: 7374927986402738804, guid: c1482dbce654844b9ba1c753cbea5d80,
@@ -3560,8 +3556,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1079413262}
-        m_TargetAssemblyTypeName: UIGamePanel, Assembly-CSharp
-        m_MethodName: ConfirmResume
+        m_TargetAssemblyTypeName: UIPanelGameWrongAns, Assembly-CSharp
+        m_MethodName: ConfirmResumeGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3858,6 +3854,12 @@ MonoBehaviour:
     type: 3}
   charWinter: {fileID: 8738749070226615999, guid: 1a04f819527e90644b35741f378a2183,
     type: 3}
+  charRefrigerator: {fileID: 8117868837606339976, guid: 74064adb09118754b98152140046a3f8,
+    type: 3}
+  charMeat: {fileID: 1819360716930532558, guid: 94b49d786fc9f8b47997261180117a33,
+    type: 3}
+  charMicrowave: {fileID: 4012895567048192508, guid: 8a11c5e460057b343b6eef0aadf45f88,
+    type: 3}
   initPos: {fileID: 883519936}
   positions:
   - {fileID: 1450316753}
@@ -4109,9 +4111,9 @@ GameObject:
   - component: {fileID: 1079413256}
   - component: {fileID: 1079413261}
   - component: {fileID: 1079413260}
-  - component: {fileID: 1079413262}
   - component: {fileID: 1079413259}
   - component: {fileID: 1079413258}
+  - component: {fileID: 1079413262}
   m_Layer: 5
   m_Name: WrongAnsPanel
   m_TagString: Untagged
@@ -6822,7 +6824,7 @@ GameObject:
   - component: {fileID: 2062863392}
   - component: {fileID: 2062863390}
   m_Layer: 5
-  m_Name: forecast
+  m_Name: Weather
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7086,7 +7088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2103649278}
   m_Layer: 5
-  m_Name: Buttons
+  m_Name: ThemeBtns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

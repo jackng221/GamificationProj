@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIGamePanel : UIPanel
+public class UIPanelGame : UIPanel
 {
     public virtual void ConfirmEndGame()
     {
