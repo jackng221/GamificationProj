@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class UIOptions : UITemplate
 {
+    public void SaveProgress()
+    {
+        ProgressController.Instance.SaveProgress();
+    }
     public void ClearProgress()
     {
-        Debug.Log("To do: clear progress");
+        ProgressController.Instance.ClearProgress();
     }
 }

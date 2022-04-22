@@ -16,7 +16,7 @@ public class UITitle : UITemplate
     public void StageSelectPanel(int stageIndex)
     {
         stageSelectPanel.SetActive(true);
-        stageSelectPanel.GetComponent<UIPanelStageSelect>().SetStageIndex(stageIndex);
+        stageSelectPanel.GetComponent<UIPanelStageSelect>().SetStage(stageIndex);
 
         //change panel content
     }

@@ -24,36 +24,31 @@ public class GameController : MonoBehaviour
             Destroy(this);
         }
     }
-    public GameObject playerObj;
-    [SerializeField]
-    private int playerHpSetting = 3;
-    private int playerHp;
-    //[SerializeField]
-    //private int bossHpSetting = 10;
-    //private int bossHp;
-    [SerializeField]
-    //private int gruntCountSetting = 10;
-    //private int gruntCount;
-    private bool stageCleared = false;
 
+    public GameObject playerObj;
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI timerText;
     public GameObject answerButtonPrefab;
     public Transform answerButtonParent;
+    public GameObject blockPanel;
+    public GameObject winPanel;
+    public GameObject losePanel;
+    public GameObject wrongAnsPanel;
 
     private DataController dataController;
     private RoundData currentRoundData;
     private QuestionData[] questionPool;
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
 
+    [SerializeField]
+    private int playerHpSetting = 3;
+    private int playerHp;
+    private int wrongAnsCount = 0;
     private bool isRoundActive;
     private bool isNotPaused;
+    private bool stageCleared = false;
     private int timer;
     private int questionIndex;
-
-    public GameObject winPanel;
-    public GameObject losePanel;
-    public GameObject wrongAnsPanel;
 
     public void StartGame(int roundIndex)
     {
@@ -90,15 +85,34 @@ public class GameController : MonoBehaviour
         if (stageCleared)
         {
             ShowPanel(winPanel);
+
+            switch (currentRoundData.name)
+            {
+                case "Weather":
+                    if (wrongAnsCount == 0)
+                    {
+                        ProgressController.Instance.perfectClearWeather = 1;
+                    }
+                    break;
+                case "FoodSafety":
+                    if (wrongAnsCount == 0)
+                    {
+                        ProgressController.Instance.perfectClearFoodSafety = 1;
+                    }
+                    break;
+            }
         }
         else
         {
             ShowPanel(losePanel);
         }
+        ProgressController.Instance.SaveProgress();
+
     }
     public void ShowPanel(GameObject panel)
     {
         isNotPaused = false;
+        //blockPanel.SetActive(true);
         panel.SetActive(true);
     }
     public void ResumeRound()
@@ -107,6 +121,7 @@ public class GameController : MonoBehaviour
     }
     public void ClearGameStatus()
     {
+        wrongAnsCount = 0;
         playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(playerHp);
         EnemyLineControl.Instance.DeleteEnemyLine();
         foreach (GameObject fx in GameObject.FindGameObjectsWithTag("FX"))
@@ -161,6 +176,8 @@ public class GameController : MonoBehaviour
             Debug.Log("Wrong answer");
             EffectSpawner.Instance.SpawnEffectAtCursor(EffectSpawner.Instance.feedbackIncorrect, gameObject);
 
+            wrongAnsCount++;
+            ProgressController.Instance.WrongAnsCountAdd(1);
             playerHp--;
             playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(1);
             ShowPanel(wrongAnsPanel);

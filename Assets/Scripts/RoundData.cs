@@ -6,5 +6,7 @@ using UnityEngine;
 public class RoundData
 {
     public string name;
+    [TextArea]
+    public string intro;
     public QuestionData[] questions;
 }

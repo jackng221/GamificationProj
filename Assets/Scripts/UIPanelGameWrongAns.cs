@@ -15,15 +15,11 @@ public class UIPanelGameWrongAns : UIPanelGame
     {
         QuestionData question = GameController.Instance.GetQuestionPool()[GameController.Instance.GetQuestionIndex()];
         GetComponentInChildren<TextMeshProUGUI>().SetText(question.consequenceText + "\n\n" + question.explanationText);
-        StartCoroutine("test");
+        StartCoroutine("RefreshLayout");
     }
-    IEnumerator test()
+    IEnumerator RefreshLayout()
     {
         yield return new WaitForSeconds(0.0001f);
-        RefreshLayout();
-    }
-    private void RefreshLayout()
-    {
         GetComponent<VerticalLayoutGroup>().enabled = false;
         GetComponent<VerticalLayoutGroup>().enabled = true;
     }
