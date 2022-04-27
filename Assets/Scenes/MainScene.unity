@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 44942741}
   - component: {fileID: 44942740}
   - component: {fileID: 44942739}
+  - component: {fileID: 44942742}
   m_Layer: 5
   m_Name: FoodSafety
   m_TagString: Untagged
@@ -256,6 +257,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44942737}
   m_CullTransparentMesh: 1
+--- !u!114 &44942742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44942737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf0941484560cf44b9a67ceee598408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresHover: 1
+  tweenTime: 2
+  tweenScale: 1.15
 --- !u!1 &48791012
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +681,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156634677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5138627, y: -0.4978114, z: 64.85254}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -686,17 +702,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allRoundData:
   - name: Weather
-    intro: 'Do you know sunburn? Thunder?
+    intro: 'What do you know about sunburn and thunder?
 
 
-      Let''s see how much you know about
-      our weather!'
+      Let''s see how much
+      you know about our weather!'
     questions:
     - questionText: The Observatory warns of high UV level, but you don't feel hot,
         why?
       consequenceText: You were unaware of the effect of UV and got a sunburn, HP-1!
       explanationText: UV does not make you feel hot like infrared, but can easily
-        cause sunburn to exposed skins
+        cause sunburn to exposed skins.
       answers:
       - answerText: False alarm
         isCorrect: 0
@@ -706,8 +722,10 @@ MonoBehaviour:
         isCorrect: 0
       graphic: charSun
     - questionText: You are buying sunglasses, which aspect is the most important?
-      consequenceText: 
-      explanationText: 
+      consequenceText: The glasses didn't protect you, HP-1!
+      explanationText: Protection against sunburns mostly corresponds to the UV filter
+        level; Dark lenses make your pupils dialte which increases UV intake and
+        sunburn risk.
       answers:
       - answerText: UV filter level
         isCorrect: 1
@@ -716,9 +734,21 @@ MonoBehaviour:
       - answerText: Lense type
         isCorrect: 0
       graphic: charSun
+    - questionText: There is a thunderstorm alert, but you know many buildings have
+        lightning rods installed. Is it safe to go out?
+      consequenceText: You got struck by lightning! HP-1!
+      explanationText: A lightning rod can only cover a distance equals to its height.
+        You are not always protected by lightning rods!
+      answers:
+      - answerText: Yes
+        isCorrect: 0
+      - answerText: No
+        isCorrect: 1
+      graphic: charThunder
     - questionText: Which of the following environments is safe from sun burn?
-      consequenceText: 
-      explanationText: 
+      consequenceText: You somehow got a sunburn! HP-1!
+      explanationText: Water and cloud only blocks portion of UV light; They may
+        also reflect UV light and increase its intensity.
       answers:
       - answerText: Submerged in water
         isCorrect: 0
@@ -727,6 +757,40 @@ MonoBehaviour:
       - answerText: Sheltered in shades
         isCorrect: 1
       graphic: charSun
+    - questionText: There is a regional thunderstorm warning, is it ok to go swimming
+        if you are not in the affected region?
+      consequenceText: You later learn that it is ok afterall... HP-1!
+      explanationText: A regional thunderstorm only affects isolated regions. Outdoor
+        activities can continue if the region is not affected.
+      answers:
+      - answerText: Yes
+        isCorrect: 1
+      - answerText: No
+        isCorrect: 0
+      graphic: charThunder
+    - questionText: Do you know the seasons in HK? When is Summer?
+      consequenceText: Wrong answer, but now you know better! HP-1!
+      explanationText: The hottest and coldest periods are Jun-Aug and Dec-Feb, marking
+        them as Summer and Winter, and the rest as Spring and Autumn.
+      answers:
+      - answerText: May - July (5-7)
+        isCorrect: 0
+      - answerText: June - August (6-8)
+        isCorrect: 1
+      - answerText: July - September (7-9)
+        isCorrect: 0
+      graphic: charForecast
+    - questionText: A tropical cyclone(typhoon) is coming. Should you reach for higher
+        or lower altitude?
+      consequenceText: You got washed away by the tide! HP-1!
+      explanationText: Tropical cyclones are often accompanied by a storm surge,
+        causing dangerous flooding to lower altitude areas.
+      answers:
+      - answerText: Higher
+        isCorrect: 1
+      - answerText: Lower
+        isCorrect: 0
+      graphic: charTornado
   - name: FoodSafety
     intro: 'Food poisoning is a common yet potentially dangerous illness. It is essential
       to learn how food should be handled correctly.
@@ -4090,6 +4154,8 @@ MonoBehaviour:
     type: 3}
   charMicrowave: {fileID: 4012895567048192508, guid: 8a11c5e460057b343b6eef0aadf45f88,
     type: 3}
+  charForecast: {fileID: 4311295993356526610, guid: 0fafc108b3b30134fa28b00588be4e58,
+    type: 3}
   initPos: {fileID: 883519936}
   positions:
   - {fileID: 1450316753}
@@ -4796,6 +4862,7 @@ GameObject:
   - component: {fileID: 1222889924}
   - component: {fileID: 1222889923}
   - component: {fileID: 1222889922}
+  - component: {fileID: 1222889925}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -4820,7 +4887,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 537}
+  m_AnchoredPosition: {x: 0, y: 501.48132}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1222889922
@@ -4935,6 +5002,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222889920}
   m_CullTransparentMesh: 1
+--- !u!114 &1222889925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222889920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf0941484560cf44b9a67ceee598408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresHover: 0
+  tweenTime: 2
+  tweenScale: 1.15
 --- !u!1 &1225838296
 GameObject:
   m_ObjectHideFlags: 0
@@ -7468,6 +7550,7 @@ GameObject:
   - component: {fileID: 2062863391}
   - component: {fileID: 2062863392}
   - component: {fileID: 2062863390}
+  - component: {fileID: 2062863393}
   m_Layer: 5
   m_Name: Weather
   m_TagString: Untagged
@@ -7485,7 +7568,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2103649278}
   m_RootOrder: 0
@@ -7589,6 +7672,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2062863393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062863386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf0941484560cf44b9a67ceee598408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresHover: 1
+  tweenTime: 2
+  tweenScale: 1.15
 --- !u!1 &2102528901
 GameObject:
   m_ObjectHideFlags: 0
@@ -8155,7 +8253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8263,6 +8361,7 @@ GameObject:
   - component: {fileID: 1653373607237756216}
   - component: {fileID: 1653373607237756217}
   - component: {fileID: 1653373607237756218}
+  - component: {fileID: 1653373607237756220}
   m_Layer: 5
   m_Name: BtnAchievement
   m_TagString: Untagged
@@ -8385,6 +8484,21 @@ RectTransform:
   m_AnchoredPosition: {x: -163, y: -372}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1653373607237756220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653373607237756212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf0941484560cf44b9a67ceee598408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresHover: 1
+  tweenTime: 2
+  tweenScale: 1.15
 --- !u!1 &8206095928482875217
 GameObject:
   m_ObjectHideFlags: 0

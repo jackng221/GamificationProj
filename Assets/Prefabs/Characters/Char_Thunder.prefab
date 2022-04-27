@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 559260798272933732}
   m_Layer: 5
   m_Name: Char_Thunder
-  m_TagString: Boss
+  m_TagString: Grunt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

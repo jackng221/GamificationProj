@@ -41,6 +41,7 @@ public class EnemyLineControl : MonoBehaviour
     public GameObject charRefrigerator;
     public GameObject charMeat;
     public GameObject charMicrowave;
+    public GameObject charForecast;
 
     [SerializeField]
     Transform initPos;
@@ -94,6 +95,9 @@ public class EnemyLineControl : MonoBehaviour
                     break;
                 case "charMicrowave":
                     grunts[i] = Instantiate(charMicrowave, initPos);
+                    break;
+                case "charForecast":
+                    grunts[i] = Instantiate(charForecast, initPos);
                     break;
                 default:
                     Debug.Log("Error: question graphic not found");

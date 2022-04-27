@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SessionControl : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class SessionControl : MonoBehaviour
     {
         if (FindSession(session))
         {
+            DOTween.KillAll();
             for (int i = 0; i < sessions.Length; i++)
             {
                 if (sessions[i].name.Equals(session))
