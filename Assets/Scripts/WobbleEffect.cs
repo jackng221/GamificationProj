@@ -32,8 +32,7 @@ public class WobbleEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (requiresHover == false)
         {
             sequence = DOTween.Sequence().Append(gameObject.transform.DOScale(targetScale, tweenTime))
-            .Append(gameObject.transform.DOScale(originalScale * 1, tweenTime))
-            .SetLoops(-1);
+            .Append(gameObject.transform.DOScale(originalScale * 1, tweenTime)).SetLoops(-1).OnKill( ()=> gameObject.transform.localScale = originalScale);
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -42,8 +41,7 @@ public class WobbleEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         Debug.Log("ENTER");
         sequence = DOTween.Sequence().Append(gameObject.transform.DOScale(targetScale, tweenTime))
-        .Append(gameObject.transform.DOScale(originalScale * 1, tweenTime))
-        .SetLoops(-1);
+        .Append(gameObject.transform.DOScale(originalScale * 1, tweenTime)).SetLoops(-1).OnKill(() => gameObject.transform.localScale = originalScale);
 
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -52,14 +50,12 @@ public class WobbleEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         Debug.Log("EXIT");
         sequence.Kill();
-        gameObject.transform.localScale = originalScale;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!requiresHover) { return; }
 
         Debug.Log("CLICK");
-        sequence.Kill();
-        gameObject.transform.localScale = originalScale;
+
     }
 }

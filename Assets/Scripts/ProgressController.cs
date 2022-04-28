@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ProgressController : MonoBehaviour
 {
@@ -25,11 +26,13 @@ public class ProgressController : MonoBehaviour
             Destroy(this);
         }
     }
-    public GameObject scrollViewContent;
     [SerializeField] GameObject achievementItem; //prefab
-    public int wrongAnsCount = 0;
 
+    public GameObject achievementPopUp;
+    public GameObject scrollViewContent;
     public Progress[] progresses;
+
+    public int wrongAnsCount = 0;
 
     public void TriggerAchievement(Progress.Names progressEnum)
     {
@@ -43,9 +46,12 @@ public class ProgressController : MonoBehaviour
                 progresses[i].dateText = "\n" + System.DateTime.Today.ToString("yyyy - mm - dd");
                 GameObject item = Instantiate(achievementItem, scrollViewContent.transform, false);
                 item.GetComponent<AchievementItem>().SetAttribute(progresses[i].text + progresses[i].dateText, progresses[i].sprite);
+
+                achievementPopUp.GetComponentInChildren<AchievementItem>().SetAttribute(progresses[i].text + progresses[i].dateText, progresses[i].sprite);
                 break;
             }
         }
+        AchievementPopUp();
         SaveProgress();
     }
     void Start()
@@ -104,5 +110,13 @@ public class ProgressController : MonoBehaviour
             TriggerAchievement(Progress.Names.Wrong10);
             //wrongAns50Times = 1;
         }
+    }
+    private void AchievementPopUp()
+    {
+        Vector3 ogLocalPosition = achievementPopUp.transform.localPosition;
+        Sequence sequence = DOTween.Sequence()
+            .Append(achievementPopUp.transform.DOLocalMoveY(ogLocalPosition.y + 285, 1f).SetEase(Ease.OutQuad))
+            .AppendInterval(2f)
+            .Append(achievementPopUp.transform.DOLocalMoveY(ogLocalPosition.y, 1f).SetEase(Ease.InQuad)).OnKill( ()=> achievementPopUp.transform.localPosition = ogLocalPosition);
     }
 }
