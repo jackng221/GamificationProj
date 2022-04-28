@@ -91,13 +91,15 @@ public class GameController : MonoBehaviour
                 case "Weather":
                     if (wrongAnsCount == 0)
                     {
-                        ProgressController.Instance.perfectClearWeather = 1;
+                        ProgressController.Instance.TriggerAchievement(Progress.Names.perfectClearWeather);
+                        //ProgressController.Instance.perfectClearWeather = 1;
                     }
                     break;
                 case "FoodSafety":
                     if (wrongAnsCount == 0)
                     {
-                        ProgressController.Instance.perfectClearFoodSafety = 1;
+                        ProgressController.Instance.TriggerAchievement(Progress.Names.perfectClearFoodSafety);
+                        //ProgressController.Instance.perfectClearFoodSafety = 1;
                     }
                     break;
             }
