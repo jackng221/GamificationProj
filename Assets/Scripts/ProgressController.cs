@@ -43,7 +43,7 @@ public class ProgressController : MonoBehaviour
                 if (progresses[i].isAchieved == 1) { return; }
 
                 progresses[i].isAchieved = 1;
-                progresses[i].dateText = "\n" + System.DateTime.Today.ToString("yyyy - mm - dd");
+                progresses[i].dateText = "\n" + System.DateTime.Today.ToString("yyyy - MM - dd");
                 GameObject item = Instantiate(achievementItem, scrollViewContent.transform, false);
                 item.GetComponent<AchievementItem>().SetAttribute(progresses[i].text + progresses[i].dateText, progresses[i].sprite);
 
