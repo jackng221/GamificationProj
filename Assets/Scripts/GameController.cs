@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
     public void StartGame(int roundIndex)
     {
         Debug.Log("Start game");
+        AudioPlayer.Instance.SwitchBgm(AudioPlayer.Instance.gameBgm);
 
         dataController = FindObjectOfType<DataController>();
         currentRoundData = dataController.GetRoundData(roundIndex);
@@ -114,15 +115,19 @@ public class GameController : MonoBehaviour
     public void ShowPanel(GameObject panel)
     {
         isNotPaused = false;
-        //blockPanel.SetActive(true);
+        blockPanel.SetActive(true);
         panel.SetActive(true);
+        Debug.Log("block true");
     }
     public void ResumeRound()
     {
         isNotPaused = true;
+        blockPanel.SetActive(false);
+        Debug.Log("block false");
     }
     public void ClearGameStatus()
     {
+        blockPanel.SetActive(false);
         wrongAnsCount = 0;
         playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(playerHp);
         EnemyLineControl.Instance.DeleteEnemyLine();
@@ -150,7 +155,7 @@ public class GameController : MonoBehaviour
             GameObject answerButtonGameObject = Instantiate(answerButtonPrefab);
             answerButtonGameObject.transform.SetParent(answerButtonParent, false);
             answerButtonGameObjects.Add(answerButtonGameObject);
-            answerButtonGameObject.GetComponent<AnswerButton>().Setup(questionData.answers[i]);
+            answerButtonGameObject.GetComponent<UIAnswerButton>().Setup(questionData.answers[i]);
         }
     }
     private void RemoveAnswerButtons()

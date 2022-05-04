@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPanelStageSelect : UIPanel
+public class UIPanelStageSelect : UIPanelGeneric
 {
     private int stageIndex = 0;
     private RoundData roundData;
@@ -18,6 +18,7 @@ public class UIPanelStageSelect : UIPanel
     }
     public void ConfirmStageSelect()
     {
+        ButtonBehavior();
         gameObject.SetActive(false);
         SessionControl.Instance.GoToSession("Game");
         GameController.Instance.StartGame(stageIndex);

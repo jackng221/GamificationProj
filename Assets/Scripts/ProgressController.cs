@@ -26,6 +26,8 @@ public class ProgressController : MonoBehaviour
             Destroy(this);
         }
     }
+
+    Sequence sequence;
     [SerializeField] GameObject achievementItem; //prefab
 
     public GameObject achievementPopUp;
@@ -113,8 +115,9 @@ public class ProgressController : MonoBehaviour
     }
     private void AchievementPopUp()
     {
+        sequence.Kill();
         Vector3 ogLocalPosition = achievementPopUp.transform.localPosition;
-        Sequence sequence = DOTween.Sequence()
+        sequence = DOTween.Sequence()
             .Append(achievementPopUp.transform.DOLocalMoveY(ogLocalPosition.y + 285, 1f).SetEase(Ease.OutQuad))
             .AppendInterval(2f)
             .Append(achievementPopUp.transform.DOLocalMoveY(ogLocalPosition.y, 1f).SetEase(Ease.InQuad)).OnKill( ()=> achievementPopUp.transform.localPosition = ogLocalPosition);

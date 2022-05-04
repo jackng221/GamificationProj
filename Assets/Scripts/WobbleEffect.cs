@@ -49,13 +49,16 @@ public class WobbleEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (!requiresHover) { return; }
 
         //Debug.Log("EXIT");
-        sequence.Kill();
+        KillSequence();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!requiresHover) { return; }
 
         //Debug.Log("CLICK");
-
+    }
+    public void KillSequence()
+    {
+        sequence.Kill();
     }
 }

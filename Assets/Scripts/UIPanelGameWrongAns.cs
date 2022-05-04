@@ -8,8 +8,8 @@ public class UIPanelGameWrongAns : UIPanelGame
 {
     public override void ConfirmResumeGame()
     {
-        GameController.Instance.WrongAnsReturn();
         base.ConfirmResumeGame();
+        GameController.Instance.WrongAnsReturn();
     }
     private void OnEnable()
     {

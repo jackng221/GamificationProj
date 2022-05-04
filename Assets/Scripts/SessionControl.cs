@@ -44,7 +44,16 @@ public class SessionControl : MonoBehaviour
     {
         if (FindSession(session))
         {
-            DOTween.KillAll();
+            List<GameObject> tweenBeKilled = new List<GameObject>(GameObject.FindGameObjectsWithTag("Grunt"));
+            tweenBeKilled.AddRange(new List<GameObject>(GameObject.FindGameObjectsWithTag("Tween")));
+            foreach (GameObject obj in tweenBeKilled)
+            {
+                DOTween.Kill(obj);
+                if (obj.GetComponent<WobbleEffect>())
+                {
+                    obj.GetComponent<WobbleEffect>().KillSequence();
+                }
+            }
             for (int i = 0; i < sessions.Length; i++)
             {
                 if (sessions[i].name.Equals(session))

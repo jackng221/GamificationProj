@@ -8,6 +8,7 @@ TagManager:
   - Grunt
   - Boss
   - FX
+  - Tween
   layers:
   - Default
   - TransparentFX
