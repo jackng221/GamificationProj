@@ -24,16 +24,21 @@ public class GameController : MonoBehaviour
             Destroy(this);
         }
     }
-
-    public GameObject playerObj;
-    public TextMeshProUGUI questionText;
-    public TextMeshProUGUI timerText;
+    //prefab
     public GameObject answerButtonPrefab;
-    public Transform answerButtonParent;
+
+    //panels
     public GameObject blockPanel;
     public GameObject winPanel;
     public GameObject losePanel;
     public GameObject wrongAnsPanel;
+
+    //GameObject reference
+    public GameObject playerObj;
+    public TextMeshProUGUI questionText;
+    public TextMeshProUGUI timerText;
+    public Transform answerButtonParent;
+    public GameObject winVFX;
 
     private DataController dataController;
     private RoundData currentRoundData;
@@ -87,6 +92,7 @@ public class GameController : MonoBehaviour
         {
             ShowPanel(winPanel);
             AudioPlayer.Instance.PlaySfx(AudioPlayer.Instance.winSfx);
+            winVFX.GetComponent<ParticleSystem>().Play();
 
             switch (currentRoundData.name)
             {
@@ -130,6 +136,8 @@ public class GameController : MonoBehaviour
     public void ClearGameStatus()
     {
         blockPanel.SetActive(false);
+        winVFX.GetComponent<ParticleSystem>().Stop(false, ParticleSystemStopBehavior.StopEmitting);
+
         wrongAnsCount = 0;
         playerObj.GetComponentInChildren<PlayerHpGraphicControl>().RemoveHearts(playerHp);
         EnemyLineControl.Instance.DeleteEnemyLine();
