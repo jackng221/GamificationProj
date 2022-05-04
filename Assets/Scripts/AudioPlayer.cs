@@ -25,7 +25,8 @@ public class AudioPlayer : MonoBehaviour
         }
     }
 
-    public AudioSource audioSource;
+    public AudioSource bgmPlayer;
+    public AudioSource sfxPlayer;
 
     public AudioClip titleBgm;
     public AudioClip gameBgm;
@@ -40,12 +41,12 @@ public class AudioPlayer : MonoBehaviour
     }
     public void SwitchBgm(AudioClip bgm)
     {
-        DOTween.To(() => audioSource.volume, x => audioSource.volume = x, 0, 1f)
+        DOTween.To(() => bgmPlayer.volume, x => bgmPlayer.volume = x, 0, 1f)
             .OnComplete( () => {
                 //Debug.Log("volume to 0");
-                audioSource.clip = bgm;
-                audioSource.Play();
-                DOTween.To(() => audioSource.volume, y => audioSource.volume = y, 1, 1f)
+                bgmPlayer.clip = bgm;
+                bgmPlayer.Play();
+                DOTween.To(() => bgmPlayer.volume, y => bgmPlayer.volume = y, 1, 1f)
                 .OnComplete( ()=> {
                     //Debug.Log("volume to 1");
                 });
@@ -53,15 +54,15 @@ public class AudioPlayer : MonoBehaviour
     }
     public void PlaySfx(AudioClip sfx)
     {
-        AudioSource.PlayClipAtPoint(sfx, Vector3.zero, 0.6f);
+        sfxPlayer.PlayOneShot(sfx);
     }
-    public AudioSource GetAudioSource()
+    public AudioSource GetBgmPlayer()
     {
-        return audioSource;
+        return bgmPlayer;
     }
-    [ContextMenu("Play")]
+    [ContextMenu("BgmPlay")]
     void TestPlay()
     {
-        audioSource.Play();
+        bgmPlayer.Play();
     }
 }

@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
         if (stageCleared)
         {
             ShowPanel(winPanel);
+            AudioPlayer.Instance.PlaySfx(AudioPlayer.Instance.winSfx);
 
             switch (currentRoundData.name)
             {
@@ -108,6 +109,7 @@ public class GameController : MonoBehaviour
         else
         {
             ShowPanel(losePanel);
+            AudioPlayer.Instance.PlaySfx(AudioPlayer.Instance.loseSfx);
         }
         ProgressController.Instance.SaveProgress();
 
