@@ -722,38 +722,103 @@ MonoBehaviour:
       Come and make sure you
       have all the essential knowledge!'
     questions:
-    - questionText: Food safety1
-      consequenceText: Food safety1
-      explanationText: Food safety1
+    - questionText: What is cross-contamination?
+      consequenceText: You are unaware that your food is contaminated and got food
+        poisoned, HP-1!
+      explanationText: Cross-contamination is the spreading of harmful bacteria between
+        food, usually through physical contact, juice from the food, or our hands.
       answers:
-      - answerText: False alarm
-        isCorrect: 0
-      - answerText: UV is not hot
+      - answerText: The spreading of bacteria between food
         isCorrect: 1
-      - answerText: Region difference
+      - answerText: The harmful risk of mixing certain food
         isCorrect: 0
-      graphic: charMeat
-    - questionText: Food safety
-      consequenceText: 
-      explanationText: 
+      - answerText: The danger related to food storage
+        isCorrect: 0
+      graphic: charChef
+    - questionText: You know cleaning with hand soap and cleaning detergent is important,
+        but why? Choose the incorrect answer.
+      consequenceText: You mistook the purpose of soap and overestimated its usage,
+        HP-1!
+      explanationText: Soap and cleaning detergent are effective for removing grease
+        and bacteria. It is recommended to wash hands for 20 seconds and wash dishes
+        with hot water for best effect and minimize contamination.
       answers:
-      - answerText: UV filter level
+      - answerText: To remove grease
+        isCorrect: 0
+      - answerText: To get rid of harmful bacteria
+        isCorrect: 0
+      - answerText: To give an antibacterial coating
         isCorrect: 1
-      - answerText: Lense Darkness
-        isCorrect: 0
-      - answerText: Lense type
-        isCorrect: 0
-      graphic: charMeat
-    - questionText: Food safety
-      consequenceText: 
-      explanationText: 
+      graphic: charWashing
+    - questionText: You are cooking some food, but are not sure if it's cooked enough,
+        how can you tell for sure? Choose the incorrect answer.
+      consequenceText: The food is not cooked enough and poisoned you, HP-1!
+      explanationText: Different food may contain bacterias that are disabled at
+        various temperature. To ensure the food is free of any harmful bacteria,
+        it is recommended to reach 75 degree celsius for the whole food.
       answers:
-      - answerText: Submerged in water
+      - answerText: Get a thermometer internal reading of 75+ degree celsius for
+          the food
         isCorrect: 0
-      - answerText: Covered under clouds
+      - answerText: Cook in fully boiling water for more than 1 minute
         isCorrect: 0
-      - answerText: Sheltered in shades
+      - answerText: Fry until the oil is sparkling
         isCorrect: 1
+      graphic: charCooking
+    - questionText: You bought a piece of frozen meat in the afternoon for dinner.
+        Where should you ideally store it?
+      consequenceText: The meat is not suitable for cooking, HP-1!
+      explanationText: Bacteria can reproduce to dangerous level in 2 hours at above
+        4 degree celsius. But by inhibiting bacteria growth, food can be stored for
+        few days at below 4 degree celsius, and technically indefinitely at below
+        -18 degree celsius.
+      answers:
+      - answerText: On the kitchen countertops
+        isCorrect: 0
+      - answerText: In the fridge
+        isCorrect: 1
+      - answerText: In the freezer
+        isCorrect: 0
+      graphic: charRefrigerator
+    - questionText: You are buying meat patties and is thinking of cooking them partially
+        raw like steaks. Is there any concern?
+      consequenceText: You try a partially raw patty with quality meat, but get food
+        poisoned anyway, HP-1!
+      explanationText: For properly handled and intact meat, bacteria may only exist
+        on the surface, thus it can be cooked partially at a risk. For minced meat,
+        the bacteria is mixed in, requiring it to be fully cooked.
+      answers:
+      - answerText: The meat is not good enough in quality for raw eating
+        isCorrect: 0
+      - answerText: The meat contains bacteria all around and cannot be eaten raw
+        isCorrect: 1
+      - answerText: Not really
+        isCorrect: 0
+      graphic: charCooking
+    - questionText: You are having a hot pot in a restaurant and is recommended to
+        dip your food in a raw egg. Should you try it?
+      consequenceText: Missed out the raw egg dipping experience, HP-1!
+      explanationText: While ordinary eggs can't be eaten raw, certified pasteurised
+        eggs are safe and should be used dipping and other dishes with raw eggs.
+      answers:
+      - answerText: Yes
+        isCorrect: 1
+      - answerText: No
+        isCorrect: 0
+      graphic: charEgg
+    - questionText: A food has past its "Best Before" date, how do you check if it
+        has spoiled?
+      consequenceText: You eat the spoiled food and get food poisoned, HP-1!
+      explanationText: To idenfity spoiled food, you can check for abnormal smell
+        and texture, you can also check for sliminess and molds. You should not try
+        it by taste for safety, and should throw it away if doubtful.
+      answers:
+      - answerText: Check for abnormal smell
+        isCorrect: 1
+      - answerText: Check for color change
+        isCorrect: 0
+      - answerText: Check for abnormal taste
+        isCorrect: 0
       graphic: charMeat
 --- !u!1 &234154115
 GameObject:
@@ -3240,7 +3305,7 @@ MonoBehaviour:
   m_fontSize: 54
   m_fontSizeBase: 54
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 54
   m_fontStyle: 0
@@ -4210,24 +4275,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionPool: []
   questionIndex: 0
+  charChef: {fileID: 8738749070226615999, guid: fb24b427df24afc4aa201024a5cdf9ef,
+    type: 3}
   charCloud: {fileID: 7405582003897953569, guid: bad7de3287f11c742afbd6f0ee77981f,
     type: 3}
+  charCooking: {fileID: 8738749070226615999, guid: 25fc978604e500f43bfcbab8c13d6a1f,
+    type: 3}
+  charEgg: {fileID: 8738749070226615999, guid: a377c4e53cb82114fb7016d0c8eb88cb, type: 3}
+  charForecast: {fileID: 4311295993356526610, guid: 0fafc108b3b30134fa28b00588be4e58,
+    type: 3}
+  charMeat: {fileID: 1819360716930532558, guid: 94b49d786fc9f8b47997261180117a33,
+    type: 3}
+  charMicrowave: {fileID: 4012895567048192508, guid: 8a11c5e460057b343b6eef0aadf45f88,
+    type: 3}
   charRain: {fileID: 8518803765059895397, guid: b3fbb9c00fb7a5c4fa3872eb6670f983,
+    type: 3}
+  charRefrigerator: {fileID: 8117868837606339976, guid: 74064adb09118754b98152140046a3f8,
     type: 3}
   charSun: {fileID: 5823909078513720484, guid: 03f60365891a53347b688964655d37df, type: 3}
   charThunder: {fileID: 8197738375573015601, guid: a8ada63753fbbdf43b9e478669c34950,
     type: 3}
   charTornado: {fileID: 2901712332197226247, guid: ba9a5d12cf03d7a4487154d84ffa2e12,
     type: 3}
+  charWashing: {fileID: 8738749070226615999, guid: 4d6c1dddcbba0e043ad4ff7d0ab7107f,
+    type: 3}
   charWinter: {fileID: 8738749070226615999, guid: 1a04f819527e90644b35741f378a2183,
-    type: 3}
-  charRefrigerator: {fileID: 8117868837606339976, guid: 74064adb09118754b98152140046a3f8,
-    type: 3}
-  charMeat: {fileID: 1819360716930532558, guid: 94b49d786fc9f8b47997261180117a33,
-    type: 3}
-  charMicrowave: {fileID: 4012895567048192508, guid: 8a11c5e460057b343b6eef0aadf45f88,
-    type: 3}
-  charForecast: {fileID: 4311295993356526610, guid: 0fafc108b3b30134fa28b00588be4e58,
     type: 3}
   initPos: {fileID: 883519936}
   positions:
@@ -5835,7 +5907,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 120
+        scalar: 200
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -9839,10 +9911,46 @@ MonoBehaviour:
   - sprite: {fileID: 21300000, guid: e546e0fb39bdc4b23b9b6efe1c37aa70, type: 3}
     progressEnum: 2
     isAchieved: 0
+    text: 'Get 10 right answers
+
+      Easy steps!'
+    dateText: 
+  - sprite: {fileID: 21300000, guid: e546e0fb39bdc4b23b9b6efe1c37aa70, type: 3}
+    progressEnum: 3
+    isAchieved: 0
+    text: 'Get 20 right answers
+
+      Learning things!'
+    dateText: 
+  - sprite: {fileID: 21300000, guid: e546e0fb39bdc4b23b9b6efe1c37aa70, type: 3}
+    progressEnum: 4
+    isAchieved: 0
+    text: 'Get 40 right answers
+
+      Certified normal being!'
+    dateText: 
+  - sprite: {fileID: 21300000, guid: e546e0fb39bdc4b23b9b6efe1c37aa70, type: 3}
+    progressEnum: 5
+    isAchieved: 0
+    text: 'Get 5 wrong answers
+
+      Just accidents!'
+    dateText: 
+  - sprite: {fileID: 21300000, guid: e546e0fb39bdc4b23b9b6efe1c37aa70, type: 3}
+    progressEnum: 6
+    isAchieved: 0
     text: 'Get 10 wrong answers
+
+      No worries!'
+    dateText: 
+  - sprite: {fileID: 21300000, guid: e546e0fb39bdc4b23b9b6efe1c37aa70, type: 3}
+    progressEnum: 7
+    isAchieved: 0
+    text: 'Get 20 wrong answers
 
       Learning from mistakes!'
     dateText: 
+  rightAnsCount: 0
   wrongAnsCount: 0
 --- !u!4 &1184333745
 Transform:
@@ -11424,8 +11532,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -201.00003}
-  m_SizeDelta: {x: 568.3, y: 355.18}
+  m_AnchoredPosition: {x: 0, y: -227}
+  m_SizeDelta: {x: 568.3, y: 407.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467855632
 MonoBehaviour:

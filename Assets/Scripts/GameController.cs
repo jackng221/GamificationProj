@@ -182,6 +182,8 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Correct answer");
             EffectSpawner.Instance.SpawnEffectAtCursor(EffectSpawner.Instance.feedbackCorrect, gameObject);
+            ProgressController.Instance.RightAnsCountAdd(1);
+
             if (CheckStageEnd())
             {
                 return;

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 843402645075321780}
   - component: {fileID: 7143005128296408584}
   m_Layer: 5
-  m_Name: Char_Clouds
+  m_Name: Char_Cloud
   m_TagString: Grunt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

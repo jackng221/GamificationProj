@@ -34,6 +34,7 @@ public class ProgressController : MonoBehaviour
     public GameObject scrollViewContent;
     public Progress[] progresses;
 
+    public int rightAnsCount = 0;
     public int wrongAnsCount = 0;
 
     public void TriggerAchievement(Progress.Names progressEnum)
@@ -42,7 +43,7 @@ public class ProgressController : MonoBehaviour
         {
             if (progresses[i].progressEnum == progressEnum)
             {
-                if (progresses[i].isAchieved == 1) { return; }
+                if (progresses[i].isAchieved == 1) { return; }  //skip if achievement already activated
 
                 progresses[i].isAchieved = 1;
                 progresses[i].dateText = "\n" + System.DateTime.Today.ToString("yyyy - MM - dd");
@@ -76,6 +77,7 @@ public class ProgressController : MonoBehaviour
                 item.GetComponent<AchievementItem>().SetAttribute(progresses[i].text + progresses[i].dateText, progresses[i].sprite);
             }
         }
+        rightAnsCount = PlayerPrefs.GetInt("rightAnsCount", 0);
         wrongAnsCount = PlayerPrefs.GetInt("wrongAnsCount", 0);
 
     }
@@ -86,6 +88,7 @@ public class ProgressController : MonoBehaviour
             PlayerPrefs.SetInt(progress.progressEnum.ToString(), progress.isAchieved);
             PlayerPrefs.SetString(progress.progressEnum.ToString()+"Date", progress.dateText);
         }
+        PlayerPrefs.SetInt("rightAnsCount", rightAnsCount);
         PlayerPrefs.SetInt("wrongAnsCount", wrongAnsCount);
 
     }
@@ -101,16 +104,40 @@ public class ProgressController : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        rightAnsCount = 0;
         wrongAnsCount = 0;
 
 }
+    public void RightAnsCountAdd(int amount)
+    {
+        rightAnsCount += amount;
+        if (rightAnsCount >= 40)
+        {
+            TriggerAchievement(Progress.Names.Right40);
+        }
+        else if (rightAnsCount >= 20)
+        {
+            TriggerAchievement(Progress.Names.Right20);
+        }
+        else if (rightAnsCount >= 10)
+        {
+            TriggerAchievement(Progress.Names.Right10);
+        }
+    }
     public void WrongAnsCountAdd(int amount)
     {
         wrongAnsCount += amount;
-        if (wrongAnsCount >= 10)
+        if (wrongAnsCount >= 20)
+        {
+            TriggerAchievement(Progress.Names.Wrong20);
+        }
+        else if (wrongAnsCount >= 10)
         {
             TriggerAchievement(Progress.Names.Wrong10);
-            //wrongAns50Times = 1;
+        }
+        else if (wrongAnsCount >= 5)
+        {
+            TriggerAchievement(Progress.Names.Wrong5);
         }
     }
     private void AchievementPopUp()

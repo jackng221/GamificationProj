@@ -32,16 +32,20 @@ public class EnemyLineControl : MonoBehaviour
     [SerializeField]
     private int questionIndex;
 
+    public GameObject charChef;
     public GameObject charCloud;
+    public GameObject charCooking;
+    public GameObject charEgg;
+    public GameObject charForecast;
+    public GameObject charMeat;
+    public GameObject charMicrowave;
     public GameObject charRain;
+    public GameObject charRefrigerator;
     public GameObject charSun;
     public GameObject charThunder;
     public GameObject charTornado;
+    public GameObject charWashing;
     public GameObject charWinter;
-    public GameObject charRefrigerator;
-    public GameObject charMeat;
-    public GameObject charMicrowave;
-    public GameObject charForecast;
 
     [SerializeField]
     Transform initPos;
@@ -69,11 +73,32 @@ public class EnemyLineControl : MonoBehaviour
         {
             switch (questionPool[i].graphic)
             {
+                case "charChef":
+                    grunts[i] = Instantiate(charChef, initPos);
+                    break;
                 case "charCloud":
                     grunts[i] = Instantiate(charCloud, initPos);
                     break;
+                case "charCooking":
+                    grunts[i] = Instantiate(charCooking, initPos);
+                    break;
+                case "charEgg":
+                    grunts[i] = Instantiate(charEgg, initPos);
+                    break;
+                case "charForecast":
+                    grunts[i] = Instantiate(charForecast, initPos);
+                    break;
+                case "charMeat":
+                    grunts[i] = Instantiate(charMeat, initPos);
+                    break;
+                case "charMicrowave":
+                    grunts[i] = Instantiate(charMicrowave, initPos);
+                    break;
                 case "charRain":
                     grunts[i] = Instantiate(charRain, initPos);
+                    break;
+                case "charRefrigerator":
+                    grunts[i] = Instantiate(charRefrigerator, initPos);
                     break;
                 case "charSun":
                     grunts[i] = Instantiate(charSun, initPos);
@@ -84,20 +109,11 @@ public class EnemyLineControl : MonoBehaviour
                 case "charTornado":
                     grunts[i] = Instantiate(charTornado, initPos);
                     break;
+                case "charWashing":
+                    grunts[i] = Instantiate(charWashing, initPos);
+                    break;
                 case "charWinter":
                     grunts[i] = Instantiate(charWinter, initPos);
-                    break;
-                case "charRefrigerator":
-                    grunts[i] = Instantiate(charRefrigerator, initPos);
-                    break;
-                case "charMeat":
-                    grunts[i] = Instantiate(charMeat, initPos);
-                    break;
-                case "charMicrowave":
-                    grunts[i] = Instantiate(charMicrowave, initPos);
-                    break;
-                case "charForecast":
-                    grunts[i] = Instantiate(charForecast, initPos);
                     break;
                 default:
                     Debug.Log("Error: question graphic not found");

@@ -8,7 +8,13 @@ public class Progress
     {
         perfectClearWeather,
         perfectClearFoodSafety,
-        Wrong10
+        Right10,
+        Right20,
+        Right40,
+        Wrong5,
+        Wrong10,
+        Wrong20
+
     }
     public Sprite sprite;
     public Names progressEnum;
