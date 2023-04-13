@@ -1,4 +1,6 @@
 # GamificationProj
+Gamification emphazied 2D quiz game implemented in Unity WebGL on Itch.io
+Link: https://jackng221.itch.io/gamification-test?secret=OoNRvpIHolSFrYdqfF4GOTyAWOg
  
 # Asset attribution
 graphics https://assetstore.unity.com/packages/2d/gui/gui-pro-kit-casual-game-176695 
