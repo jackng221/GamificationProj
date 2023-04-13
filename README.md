@@ -1,5 +1,6 @@
 # GamificationProj
-Gamification emphazied 2D quiz game implemented in Unity WebGL on Itch.io
+Gamification emphazied 2D quiz game implemented in Unity WebGL uploaded to Itch.io
+
 Link: https://jackng221.itch.io/gamification-test?secret=OoNRvpIHolSFrYdqfF4GOTyAWOg
  
 # Asset attribution
